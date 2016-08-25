@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
 // Computer choices for words and chooses a word
-var computerChoices = ['dog', 'horse', 'toucan','racecar','paragraph','keyboard','dividends'];
+var computerChoices = ['dog', 'horse', 'toucan','racecar','paragraph','keyboard','dividends','aaa'];
 var chosenWord = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 //check
@@ -64,6 +64,10 @@ var guessArray = [];
 				"<h3>These are your guesses: " + guessArray;
 				document.querySelector('#game').innerHTML = html;
 				console.log(remainingLetters);
+						if (remainingLetters <= 0){
+						alert("YOU WIN!");
+
+					}
 			}
 			else if (userGuess !== chosenWord[x]){
 				// lives+=-1;
@@ -72,18 +76,16 @@ var guessArray = [];
 				"<h3>You have " + lives + " chances left!" +
 				"<h3>These are your guesses: " + guessArray;
 				document.querySelector('#game').innerHTML = html;
+					if (lives <= 0){
+					alert("YOU LOSE!");
+					}
 
 			}
 		}
 	}
 
-if (remainingLetters == 0){
-	console.log("please work");
-		alert("YOU WIN!");
-}
-if (lives <= 0){
-		alert("YOU LOSE!");
-}
+
+
 
 	
 
