@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman</title>
+</head>
+<body>
+
+<!-- What shows in the beginning -->
+<div id="title">
+	<h1>Hangman the Game</h1>
+</div>
+
+<div id="game">
+<p>Press a letter to start the game!</p>
+
+</div>
+
+<script type="text/javascript">
+
+// Computer choices for words and chooses a word
+var computerChoices = ['dog', 'horse', 'toucan','racecar','paragraph','keyboard','dividends'];
+var chosenWord = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+//check
+console.log(chosenWord);
+
+//=======================================================
+
+var answerArray = [];
+for (var i=0; i<chosenWord.length; i++){
+	answerArray[i] = "_";
+}
+
+//check
+console.log(answerArray.join(" "));
+
+//=======================================================
+
+var remainingLetters = chosenWord.length;
+
+var guessArray = [];
+
+
+//=======================================================
+
+
+
+
+	document.onkeyup = function(event) {
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	guessArray.push(userGuess);
+
+		for (var x = 0; x < chosenWord.length; x++){
+
+
+if (userGuess == chosenWord[x]) {
+				answerArray[x] = chosenWord[x];
+				remainingLetters+=-1;
+				// Placing the html into the game ID
+				var html = answerArray.join(" ") + 
+				"<h3>These are your guesses: " + guessArray;
+				document.querySelector('#game').innerHTML = html;
+			}
+			else if (userGuess !== chosenWord[x]){
+
+				// Placing the html into the game ID
+				var html = answerArray.join(" ") + 
+				"<h3>These are your guesses: " + guessArray;
+				document.querySelector('#game').innerHTML = html;
+
+			}
+			}
+
+	}
+
+</script>
+</body>
+</html>
+
