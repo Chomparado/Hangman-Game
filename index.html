@@ -11,6 +11,7 @@
 </div>
 
 <div id="game">
+
 <p>Press a letter to start the game!</p>
 
 </div>
@@ -37,7 +38,7 @@ console.log(answerArray.join(" "));
 //=======================================================
 
 var remainingLetters = chosenWord.length;
-
+var lives = 6
 var guessArray = [];
 
 
@@ -48,32 +49,44 @@ var guessArray = [];
 
 	document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	guessArray.push(userGuess);
 
+	if(guessArray.indexOf(userGuess) == -1){
+	guessArray.push(userGuess);
+    }
 		for (var x = 0; x < chosenWord.length; x++){
 
-
-if (userGuess == chosenWord[x]) {
+			if (userGuess == chosenWord[x]) {
 				answerArray[x] = chosenWord[x];
 				remainingLetters+=-1;
 				// Placing the html into the game ID
-				var html = answerArray.join(" ") + 
+				var html = answerArray.join(" ") +
+				"<h3>You have " + lives + " chances left!" +
 				"<h3>These are your guesses: " + guessArray;
 				document.querySelector('#game').innerHTML = html;
+				console.log(remainingLetters);
 			}
 			else if (userGuess !== chosenWord[x]){
-
+				// lives+=-1;
 				// Placing the html into the game ID
 				var html = answerArray.join(" ") + 
+				"<h3>You have " + lives + " chances left!" +
 				"<h3>These are your guesses: " + guessArray;
 				document.querySelector('#game').innerHTML = html;
 
 			}
-			}
-
+		}
 	}
+
+if (remainingLetters == 0){
+	console.log("please work");
+		alert("YOU WIN!");
+}
+if (lives <= 0){
+		alert("YOU LOSE!");
+}
+
+	
 
 </script>
 </body>
 </html>
-
