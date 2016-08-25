@@ -50,6 +50,10 @@ var guessArray = [];
 	document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
+	if(chosenWord.indexOf(userGuess) ==-1){
+		lives+=-1;
+	}
+
 	if(guessArray.indexOf(userGuess) == -1){
 	guessArray.push(userGuess);
     }
